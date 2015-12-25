@@ -84,6 +84,12 @@ public class ChessBoardState implements ChessGameLogic {
 
 	public static ChessBoardState createInitialState() {
 		Piece[][] rawBoard = new Piece[ChessBoardState.rowCount][ChessBoardState.colCount];
+		
+		for(int row = 0; row < ChessBoardState.rowCount; row++) {
+			for(int col = 0; col < ChessBoardState.colCount; col++) {
+				rawBoard[row][col] = new Piece(PieceType.EMPTY, Color.EMPTY);
+			}
+		}
 
 		// Place pawns
 		for (int col = 0; col < ChessBoardState.colCount; col++) {
@@ -111,6 +117,13 @@ public class ChessBoardState implements ChessGameLogic {
 		
 		rawBoard[ChessBoardState.rowCount-1][2] = PieceFactory.WHITE.createBishop();
 		rawBoard[ChessBoardState.rowCount-1][ChessBoardState.colCount-3] = PieceFactory.WHITE.createBishop();
+		
+		// Place king and queen
+		rawBoard[0][3] = PieceFactory.BLACK.createQueen();
+		rawBoard[0][4] = PieceFactory.BLACK.createKing();
+		
+		rawBoard[ChessBoardState.rowCount-1][3] = PieceFactory.WHITE.createQueen();
+		rawBoard[ChessBoardState.rowCount-1][4] = PieceFactory.WHITE.createKing();
 
 		return new ChessBoardState(rawBoard, Color.WHITE);
 	}

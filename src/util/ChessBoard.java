@@ -49,6 +49,8 @@ public class ChessBoard implements ChessGameLogic {
 	
 		fireGameEvent(new GameEvent(oldState, newState, move));
 		
+		currentState = newState;
+		
 		return currentState;
 	}
 
